@@ -169,3 +169,10 @@ export const has_prop = (obj, prop) => Object.prototype.hasOwnProperty.call(obj,
 export function action_destroyer(action_result) {
 	return action_result && is_function(action_result.destroy) ? action_result.destroy : noop;
 }
+
+export function camelize_str(str: string) {
+	return str.replace(/^([A-Z])|[\s-_]+(\w)/g, function (_match, cap, rest, _offset) {
+		if (rest) return rest.toUpperCase();
+		return cap.toLowerCase();
+	});
+}

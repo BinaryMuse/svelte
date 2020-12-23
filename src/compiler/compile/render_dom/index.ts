@@ -4,6 +4,7 @@ import Renderer from './Renderer';
 import { CompileOptions, CssResult } from '../../interfaces';
 import { walk } from 'estree-walker';
 import { extract_names, Scope } from '../utils/scope';
+import { dasherize_str } from '../utils/dasherize';
 import { invalidate } from './invalidate';
 import Block from './Block';
 import { ClassDeclaration, FunctionExpression, Node, Statement, ObjectExpression, Expression } from 'estree';
@@ -512,7 +513,7 @@ export default function dom(
 				computed: false,
 				key: { type: 'Identifier', name: 'observedAttributes' },
 				value: x`function() {
-					return [${props.map(prop => x`"${prop.export_name}"`)}];
+					return [${props.map(prop => x`"${dasherize_str(prop.export_name)}"`)}];
 				}` as FunctionExpression
 			});
 		}

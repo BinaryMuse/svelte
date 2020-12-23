@@ -1,4 +1,4 @@
-import { has_prop } from './utils';
+import { camelize_str, has_prop } from './utils';
 
 export function append(target: Node, node: Node) {
 	target.appendChild(node);
@@ -364,7 +364,7 @@ export class HtmlTag {
 export function attribute_to_object(attributes: NamedNodeMap) {
 	const result = {};
 	for (const attribute of attributes) {
-		result[attribute.name] = attribute.value;
+		result[camelize_str(attribute.name)] = attribute.value;
 	}
 	return result;
 }
